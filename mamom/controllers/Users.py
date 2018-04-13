@@ -4,6 +4,15 @@ from mamom import app
 
 from mamom.models.User import User
 
+@app.route("/mamom/logout/", methods=["GET"])
+def logout():
+    try:
+        session.pop("_id", None)
+
+        return redirect("/mamom/login/")
+    except Exception as e:
+        return "Houve um problema ao realizar logout!", 400
+
 @app.route("/mamom/login/", methods=["GET"])
 def index_login():
     if "_id" in session:
