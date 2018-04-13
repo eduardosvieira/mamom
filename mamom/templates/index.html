@@ -20,10 +20,41 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 
   <script>
+
+    var PROTOCOL = window.location.protocol;
+    var HOSTNAME = window.location.hostname;
+    var PORT = window.location.port;
+
+    var URL = PROTOCOL + "//" + HOSTNAME + PORT;
+
+    /*Criando nova conta*/
+    function createAccount() {
+      var name = $("#name").val();
+      var balance = $("#balance").val();
+
+      if(name) {
+        $.ajax({
+          url: URL + "/mamom/accounts/",
+          data: {"name": name, "balance": balance},
+          success: function(data) {
+            window.location.replace(URL + "/mamom/")
+          },
+          error: function(data) {
+            $("#error").text("Não foi possível criar uma nova conta agora. Tente mais tarde!");
+          }
+        });
+      } else {
+        $("#error").text("O nome da conta não ser vazio!");
+      }
+    }
+
     $(document).ready(function(){
       $(".button-collapse").sideNav();
 
       $('.tabs').tabs();
+
+      $('.modal').modal();
+
     });
 
   </script>
@@ -110,6 +141,36 @@
       </div>
     </div>
 
+</div>
+
+
+<div class="fixed-action-btn">
+  <a href="#modal-create-account" class="btn-floating btn-large modal-trigger red">
+    <i class="large material-icons">add</i>
+  </a>
+</div>
+
+<!-- modal de criação de conta -->
+<div id="modal-create-account" class="modal">
+  <div class="modal-content">
+    <span class="modal-title">Nova conta</span>
+    <div class="row">
+      <div class="input-text">
+        <label for="name">Nome</label>
+        <input name="name" id="name" type="text">
+      </div>
+
+      <div class="input-text">
+        <label for="balance">Saldo</label>
+        <input name="balance" id="balance" type="number">
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <a onclick="createAccount();" class="modal-action modal-close btn-flat">Criar</a>
+    <a class="modal-action modal-close btn-flat">Cancelar</a>
+  </div>
 </div>
 
 </body>
