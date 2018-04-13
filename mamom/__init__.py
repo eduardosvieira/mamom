@@ -11,3 +11,4 @@ db = client.mamomdb
 
 
 from mamom.controllers import Default
+from mamom.controllers import Users
