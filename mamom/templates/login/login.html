@@ -45,22 +45,26 @@
   </nav>
 
   <div class="container">
-    <form action="/mamom/login/">
+    <form action="/mamom/login/" method="POST">
+      {% if error %}
+        <div class="row">
+          <span>{{error}}</span>
+        </div>
+      {% endif %}
       <div class="row">
         <div class="input-field s12 m12 l12">
-          <input id="email" type="email">
+          <input name="email" id="email" type="email">
           <label for="email">E-mail</label>
         </div>
 
         <div class="input-field s12 m12 l12">
-          <input id="password" type="password">
+          <input name="password" id="password" type="password">
           <label for="password">Senha</label>
         </div>
-
       </div>
 
       <div class="row">
-        <a href="#" class="btn col s12 m6 l6">Entrar</a>
+        <button type="submit" class="btn col s12 m6 l6">Entrar</button>
         <a href="#" class="btn col s12 m6 l6">Cancelar</a>
       </div>
     </form>
