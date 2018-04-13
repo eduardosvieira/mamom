@@ -17,3 +17,4 @@ from mamom.models.User import User
 from mamom.models.Account import Account
 from mamom.models.Transation import Transation
 from mamom.models.Category import Category
+from mamom.models.Income import Income
