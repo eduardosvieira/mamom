@@ -12,3 +12,7 @@ db = client.mamomdb
 
 from mamom.controllers import Default
 from mamom.controllers import Users
+
+from mamom.models.User import User
+from mamom.models.Account import Account
+from mamom.models.Transation import Transation
