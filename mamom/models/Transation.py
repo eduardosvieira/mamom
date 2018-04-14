@@ -1,3 +1,4 @@
+from bson.objectid import ObjectId
 
 from mamom import db
 
@@ -9,6 +10,14 @@ class Transation():
         self.category = category
         self.account = account
         self.value = value
+
+    def getAllTransationsByAccountId(self, accountId):
+        try:
+            transations = db.transations.find({"account._id": ObjectId(accountId)})
+
+            return transations
+        except Exception as e:
+            return None
 
     def createTransation(self):
         try:

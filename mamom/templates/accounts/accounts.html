@@ -94,34 +94,23 @@
   <div class="container">
     <input id="accountId" type="hidden" value="{{ account._id }}">
 
-    <!-- movimentação -->
-    <div class="card">
-      <div class="card-content">
-        <div class="row">
-          <div class="col s12 m6 l6">
-            <span class="card-title">Novo celular</span>
-          </div>
-          <div class="col s12 m6 l6">
-            <span class="card-title">R$ 500, 00</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- movimentação -->
-    <div class="card">
-      <div class="card-content">
-        <div class="row">
-          <div class="col s12 m6 l6">
-            <span class="card-title">Novo celular</span>
-          </div>
-          <div class="col s12 m6 l6">
-            <span class="card-title">R$ 500, 00</span>
+    {% if transations %}
+      {% for transation in transations %}
+        <!-- movimentação -->
+        <div class="card">
+          <div class="card-content">
+            <div class="row">
+              <div class="col s12 m6 l6">
+                <span class="card-title">{{ transation.name }}</span>
+              </div>
+              <div class="col s12 m6 l6">
+                <span class="card-title">R$ {{ transation.value }} </span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
+      {% endfor %}
+    {% endif %}
 
   <div class="fixed-action-btn vertical click-to-toggle">
    <a onclick="fillModalCreateTransation();" href="#modal-create-transation" class="modal-trigger btn-floating btn-large red">
