@@ -19,45 +19,7 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 
-  <script>
-
-    var PROTOCOL = window.location.protocol;
-    var HOSTNAME = window.location.hostname;
-    var PORT = window.location.port;
-
-    var URL = PROTOCOL + "//" + HOSTNAME + ":" + PORT;
-
-    $(document).ready(function(){
-      $(".button-collapse").sideNav();
-
-      $('.tabs').tabs();
-
-      $('.modal').modal();
-
-      $("#btnCreateAccount").click(function(event){
-        var name = $("#name").val();
-        var balance = $("#balance").val();
-
-        if(name) {
-          $.ajax({
-            url: URL + "/mamom/accounts/",
-            type: "POST",
-            data: {"name": name, "balance": balance},
-            success: function(data) {
-              window.location.replace(URL + "/mamom/")
-            },
-            error: function(data) {
-              $("#error").css("display", "block").text("Não foi possível criar uma nova conta agora. Tente mais tarde!");
-            }
-          });
-        } else {
-          $("#error").css("display", "block").text("O nome da conta não ser vazio!");
-        }
-      });
-
-    });
-
-  </script>
+  <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 
   <title>Mamom</title>
 </head>
@@ -69,15 +31,31 @@
       <a href="/mamom/" class="brand-logo center">Mamom</a>
 
         <ul id="slide-out" class="side-nav">
-          <li><a href="#">Editar perdil</a></li>
+          <li><a href="#">Editar perfil</a></li>
           <li><a href="/mamom/logout/">Sair</a></li>
         </ul>
         <a data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
     </div>
+
+    <div>
+      <h4 class="center-align">R$ 100,00</h4>
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m6 l6">
+            <p class="left-align">R$ 100,00</p>
+          </div>
+          <div class="col s12 m6 l6">
+            <p class="right-align">R$ 100,00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="nav-content">
       <ul class="tabs tabs-transparent">
         <li class="tab"><a class="active" href="#accounts">Contas</a></li>
         <li class="tab"><a href="#history">Movimentações</a></li>
+        <li class="tab"><a href="#goals">Metas</a></li>
       </ul>
     </div>
   </nav>
@@ -122,9 +100,30 @@
             </div>
           </div>
         </div>
+
       {% endfor %}
     {% endif %}
 
+</div>
+
+<div id="goals" class="container">
+  {% if goals %}
+    {% for goal in goals %}
+      <!-- movimentação -->
+      <div class="card">
+        <div class="card-content">
+          <div class="row">
+            <div class="col s12 m6 l6">
+              <span class="card-title">{{ goal.name }}</span>
+            </div>
+            <div class="col s12 m6 l6">
+              <span class="card-title">R$ {{ goal.balance }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
 </div>
 
 

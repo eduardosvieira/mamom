@@ -19,59 +19,7 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 
-  <script>
-    var PROTOCOL = window.location.protocol;
-    var HOSTNAME = window.location.hostname;
-    var PORT = window.location.port;
-
-    var URL = PROTOCOL + "//" + HOSTNAME + ":" + PORT;
-
-    function fillModalCreateTransation() {
-      $.ajax({
-        url: URL + "/mamom/categories/",
-        type: "GET",
-        success: function(data) {
-          $("#category").empty();
-
-          for(index in data) {
-            $("#category").append($("<option />").text(data[index]["name"]).attr("value", data[index]["_id"]))
-          }
-
-          $('select').material_select();
-        }
-      });
-    }
-
-    $(document).ready(function(){
-      $(".button-collapse").sideNav();
-
-      $('.tabs').tabs();
-
-      $('.modal').modal();
-
-      $('select').material_select();
-
-      $("#btnCreateAccount").click(function(event){
-        var accountId = $("#accountId").val();
-        var name = $("#name").val();
-        var categoryId = $("#category :checked").val();
-        var createdAt = $("#createdAt").val();
-        var value = $("#value").val();
-
-        $.ajax({
-          url: URL + "/mamom/transations/",
-          type: "POST",
-          data: {"accountId": accountId, "name": name, "categoryId": categoryId, "createdAt": createdAt, "value": value},
-          success: function(data) {
-            window.location.replace(URL + "/mamom/accounts/" + accountId + "/");
-          }
-        });
-
-
-      });
-    });
-
-  </script>
+  <script src="{{ url_for('static', filename='js/accounts.js')}}"></script>
 
   <title>Mamom</title>
 </head>
@@ -89,6 +37,21 @@
         </ul>
         <a data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
     </div>
+
+    <div>
+      <h4 class="center-align">R$ 100,00</h4>
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m6 l6">
+            <p class="left-align">R$ 100,00</p>
+          </div>
+          <div class="col s12 m6 l6">
+            <p class="right-align">R$ 100,00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </nav>
 
   <div class="container">
