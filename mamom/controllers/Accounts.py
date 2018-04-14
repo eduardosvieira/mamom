@@ -5,6 +5,13 @@ from mamom import app, db
 from mamom.models.Account import Account
 from mamom.models.User import User
 
+@app.route("/mamom/accounts/<account_id>/", methods=["GET"])
+def get_account(account_id):
+    account = Account().getAccountById(account_id)
+
+    return render_template("accounts/accounts.html", account=account)
+    
+
 @app.route("/mamom/accounts/", methods=["POST"])
 def create_account():
     try:

@@ -9,6 +9,15 @@ class Account():
         self.balance = balance
         self.user = user
 
+    def getAccountById(self, accountId):
+        try:
+            account = db.accounts.find({"_id": ObjectId(accountId)})
+
+            return account
+        except Exception as e:
+            return None
+
+
     def getAllAccountsByUserId(self, userId):
         try:
             accounts = db.accounts.find({"user._id": ObjectId(userId)})
