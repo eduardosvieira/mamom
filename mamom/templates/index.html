@@ -81,6 +81,12 @@
         </div>
       {% endfor %}
     {% endif %}
+
+    <div class="fixed-action-btn">
+      <a href="#modal-create-account" class="btn-floating btn-large modal-trigger red">
+        <i class="large material-icons">add</i>
+      </a>
+    </div>
   </div>
 
   <div id="history" class="container">
@@ -124,14 +130,38 @@
       </div>
     {% endfor %}
   {% endif %}
+
+  <div class="fixed-action-btn">
+    <a href="#modal-create-goal" class="btn-floating btn-large modal-trigger red">
+      <i class="large material-icons">add</i>
+    </a>
+  </div>
 </div>
 
 
-<div class="fixed-action-btn">
-  <a href="#modal-create-account" class="btn-floating btn-large modal-trigger red">
-    <i class="large material-icons">add</i>
-  </a>
+<!-- modal de criação de meta -->
+<div id="modal-create-goal" class="modal">
+  <div class="modal-content">
+    <span class="modal-title">Nova meta</span>
+    <div class="row">
+      <div class="input-text">
+        <label for="goal-name">Nome</label>
+        <input name="goalname" id="goal-name" type="text">
+      </div>
+
+      <div class="input-text">
+        <label for="goal-balance">Saldo</label>
+        <input name="goal-balance" id="goal-balance" type="number" value="0">
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <a id="btnCreateGoal" class="modal-action modal-close btn-flat">Criar</a>
+    <a class="modal-action modal-close btn-flat">Cancelar</a>
+  </div>
 </div>
+
 
 <!-- modal de criação de conta -->
 <div id="modal-create-account" class="modal">

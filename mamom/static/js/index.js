@@ -12,6 +12,28 @@ $(document).ready(function(){
 
   $('.modal').modal();
 
+  $("#btnCreateGoal").click(function(event){
+    var name = $("#goal-name").val();
+    var balance = $("#goal-balance").val();
+
+    if(name) {
+      $.ajax({
+        url: URL + "/mamom/goals/",
+        type: "POST",
+        data: {"name": name, "balance": balance},
+        success: function(data) {
+          window.location.replace(URL + "/mamom/")
+        },
+        error: function(data) {
+          $("#error").css("display", "block").text("Não foi possível criar uma nova meta agora. Tente mais tarde!");
+        }
+      });
+    } else {
+      $("#error").css("display", "block").text("O nome da meta não oode ser vazio!");
+    }
+  });
+
+
   $("#btnCreateAccount").click(function(event){
     var name = $("#name").val();
     var balance = $("#balance").val();
