@@ -2,6 +2,8 @@ from flask import session
 
 from mamom import db
 
+from bson.objectid import ObjectId
+
 from werkzeug.security import generate_password_hash, check_password_hash
 
 class User():
@@ -10,6 +12,15 @@ class User():
         self.name = name
         self.email = email
         self.password = password
+
+
+    def getUserById(self, userId):
+        try:
+            user = db.users.find_one({"_id": ObjectId(userId)})
+
+            return user;
+        except Exception as e:
+            return None
 
 
     def login(self):
