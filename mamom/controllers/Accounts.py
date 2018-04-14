@@ -10,7 +10,7 @@ def get_account(account_id):
     account = Account().getAccountById(account_id)
 
     return render_template("accounts/accounts.html", account=account)
-    
+
 
 @app.route("/mamom/accounts/", methods=["POST"])
 def create_account():

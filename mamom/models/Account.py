@@ -11,7 +11,7 @@ class Account():
 
     def getAccountById(self, accountId):
         try:
-            account = db.accounts.find({"_id": ObjectId(accountId)})
+            account = db.accounts.find_one({"_id": ObjectId(accountId)})
 
             return account
         except Exception as e:

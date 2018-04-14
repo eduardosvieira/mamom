@@ -20,6 +20,28 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 
   <script>
+    var PROTOCOL = window.location.protocol;
+    var HOSTNAME = window.location.hostname;
+    var PORT = window.location.port;
+
+    var URL = PROTOCOL + "//" + HOSTNAME + ":" + PORT;
+
+    function fillModalCreateTransation() {
+      $.ajax({
+        url: URL + "/mamom/categories/",
+        type: "GET",
+        success: function(data) {
+          $("#category").empty();
+
+          for(index in data) {
+            $("#category").append($("<option />").text(data[index]["name"]).attr("value", data[index]["_id"]))
+          }
+
+          $('select').material_select();
+        }
+      });
+    }
+
     $(document).ready(function(){
       $(".button-collapse").sideNav();
 
@@ -28,6 +50,25 @@
       $('.modal').modal();
 
       $('select').material_select();
+
+      $("#btnCreateAccount").click(function(event){
+        var accountId = $("#accountId").val();
+        var name = $("#name").val();
+        var categoryId = $("#category :checked").val();
+        var createdAt = $("#createdAt").val();
+        var value = $("#value").val();
+
+        $.ajax({
+          url: URL + "/mamom/transations/",
+          type: "POST",
+          data: {"accountId": accountId, "name": name, "categoryId": categoryId, "createdAt": createdAt, "value": value},
+          success: function(data) {
+            window.location.replace(URL + "/mamom/accounts/" + accountId + "/");
+          }
+        });
+
+
+      });
     });
 
   </script>
@@ -51,6 +92,8 @@
   </nav>
 
   <div class="container">
+    <input id="accountId" type="hidden" value="{{ account._id }}">
+
     <!-- movimentação -->
     <div class="card">
       <div class="card-content">
@@ -80,22 +123,8 @@
     </div>
   </div>
 
-
-<div class="fixed-action-btn">
-  <a class="btn-floating btn-large red">
-    <i class="large material-icons">mode_edit</i>
-  </a>
-  <ul>
-    <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
-    <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-    <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
-    <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li>
-  </ul>
-</div>
-
-
   <div class="fixed-action-btn vertical click-to-toggle">
-   <a href="#modal-create-transation" class="modal-trigger btn-floating btn-large red">
+   <a onclick="fillModalCreateTransation();" href="#modal-create-transation" class="modal-trigger btn-floating btn-large red">
      <i class="material-icons">add</i>
    </a>
  </div>
