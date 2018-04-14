@@ -11,6 +11,14 @@ class Transation():
         self.account = account
         self.value = value
 
+    def getAllTransationsByUserId(self, userId):
+        try:
+            transations = db.transations.find({"account.user._id": ObjectId(userId)})
+
+            return transations
+        except Exception as e:
+            return None
+
     def getAllTransationsByAccountId(self, accountId):
         try:
             transations = db.transations.find({"account._id": ObjectId(accountId)})

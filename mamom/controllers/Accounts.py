@@ -12,6 +12,8 @@ def get_account(account_id):
 
     transations = Transation().getAllTransationsByAccountId(account_id)
 
+    
+
     return render_template("accounts/accounts.html", account=account, transations=transations)
 
 

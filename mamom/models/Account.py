@@ -9,6 +9,24 @@ class Account():
         self.balance = balance
         self.user = user
 
+    def credit(self, transation=None):
+        try:
+            db.accounts.update({"_id": ObjectId(transation.account["_id"])},
+            {"$inc": {"balance": transation.value}})
+
+            return True
+        except Exception as e:
+            return False
+
+    def debit(self, transation=None):
+        try:
+            db.accounts.update({"_id": ObjectId(transation.account["_id"])},
+            {"$inc": {"balance": -transation.value}})
+
+            return True
+        except Exception as e:
+            return False
+
     def getAccountById(self, accountId):
         try:
             account = db.accounts.find_one({"_id": ObjectId(accountId)})

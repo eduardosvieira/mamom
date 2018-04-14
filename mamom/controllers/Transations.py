@@ -8,6 +8,10 @@ from mamom.models.Transation import Transation
 
 @app.route("/mamom/transations/", methods=["POST"])
 def create_transation():
+    INCOMES = ["Remuneração", "Rendimento"]
+    EXPENSES = ["Transporte", "Lazer", "Alimentação"]
+
+
     account_id = request.form.get("accountId")
     account = Account().getAccountById(account_id)
 
@@ -21,6 +25,11 @@ def create_transation():
     transation = Transation(name=name, value=value, createdAt=createdAt, category=category, account=account)
 
     if(transation.createTransation()):
+        if transation.category["name"] in INCOMES:
+            Account().credit(transation=transation)
+        else:
+            Account().debit(transation=transation)
+
         return "OK", 200
     else:
         return "Error", 400
