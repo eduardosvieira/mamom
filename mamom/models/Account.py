@@ -1,3 +1,4 @@
+from bson.objectid import ObjectId
 
 from mamom import db
 
@@ -7,6 +8,14 @@ class Account():
         self.name = name
         self.balance = balance
         self.user = user
+
+    def getAllAccountsByUserId(self, userId):
+        try:
+            accounts = db.accounts.find({"user._id": ObjectId(userId)})
+
+            return accounts
+        except Exception as e:
+            return None
 
     def createAccount(self):
         try:

@@ -86,33 +86,23 @@
 
     <p style="display:None"><p>
 
-    <!-- conta -->
-    <div class="card">
-      <div class="card-content">
-        <div class="row">
-          <div class="col s12 m6 l6">
-            <span class="card-title">Conta Corrente</span>
-          </div>
-          <div class="col s12 m6 l6">
-            <span class="card-title">R$ 100, 00</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-content">
-        <div class="row">
-          <div class="col s12 m6 l6">
-            <span class="card-title">Conta Poupança</span>
-          </div>
-          <div class="col s12 m6 l6">
-            <span class="card-title">R$ 100, 00</span>
+    {% if accounts %}
+      {% for account in accounts %}
+        <!-- conta -->
+        <div class="card">
+          <div class="card-content">
+            <div class="row">
+              <div class="col s12 m6 l6">
+                <span class="card-title"><a href="/mamom/accounts/{{ account._id }}/">{{ account.name }}</a></span>
+              </div>
+              <div class="col s12 m6 l6">
+                <span class="card-title">R$ {{ account.balance }}</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-
+      {% endfor %}
+    {% endif %}
   </div>
 
   <div id="history" class="container">
