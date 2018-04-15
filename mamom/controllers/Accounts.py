@@ -8,14 +8,15 @@ from mamom.models.Transation import Transation
 
 @app.route("/mamom/accounts/<account_id>/", methods=["GET"])
 def get_account(account_id):
-    account = Account().getAccountById(account_id)
+    try:
+        account = Account().getAccountById(account_id)
 
-    transations = Transation().getAllTransationsByAccountId(account_id)
+        if account["user"]["_id"] == session["_id"]:
+            transations = Transation().getAllTransationsByAccountId(account_id)
 
-    
-
-    return render_template("accounts/accounts.html", account=account, transations=transations)
-
+            return render_template("accounts/accounts.html", account=account, transations=transations)
+    except Exception as e:
+        return "Permissão negada!", 403
 
 @app.route("/mamom/accounts/", methods=["POST"])
 def create_account():
