@@ -9,6 +9,10 @@ class Account():
         self.balance = balance
         self.user = user
 
+    def getTotalBalance(self, accounts):
+        try:
+            db.accounts.aggregate([{ $group: {_id: "$status", total: { $sum: "$balance" } } } ])
+
     def credit(self, transation=None):
         try:
             db.accounts.update({"_id": ObjectId(transation.account["_id"])},
