@@ -14,6 +14,7 @@ from mamom.controllers import Users
 from mamom.controllers import Accounts
 from mamom.controllers import Categories
 from mamom.controllers import Transations
+from mamom.controllers import Goals
 
 from mamom.models.User import User
 from mamom.models.Account import Account
@@ -21,3 +22,4 @@ from mamom.models.Transation import Transation
 from mamom.models.Category import Category
 from mamom.models.Income import Income
 from mamom.models.Expense import Expense
+from mamom.models.Goal import Goal

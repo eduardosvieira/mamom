@@ -14,13 +14,14 @@ $(document).ready(function(){
 
   $("#btnCreateGoal").click(function(event){
     var name = $("#goal-name").val();
-    var balance = $("#goal-balance").val();
+    var value = $("#goal-value").val();
+    var deadline = $("#goal-deadline").val();
 
     if(name) {
       $.ajax({
         url: URL + "/mamom/goals/",
         type: "POST",
-        data: {"name": name, "balance": balance},
+        data: {"name": name, "value": value, "deadline": deadline},
         success: function(data) {
           window.location.replace(URL + "/mamom/")
         },
