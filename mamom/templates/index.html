@@ -67,10 +67,11 @@
     {% if accounts %}
       {% for account in accounts %}
         <!-- conta -->
-        <div class="card">
+        <div class="account card">
           <div class="card-content">
             <div class="row">
               <div class="col s12 m6 l6">
+                <input class="accountId" type="hidden" value="{{ account._id }}">
                 <span class="card-title"><a href="/mamom/accounts/{{ account._id }}/">{{ account.name }}</a></span>
               </div>
               <div class="col s12 m6 l6">
@@ -188,6 +189,26 @@
 
   <div class="modal-footer">
     <a id="btnCreateAccount" class="modal-action modal-close btn-flat">Criar</a>
+    <a class="modal-action modal-close btn-flat">Cancelar</a>
+  </div>
+</div>
+
+
+<!-- modal de edição de conta -->
+<div id="modal-edit-account" class="modal">
+  <div class="modal-content">
+    <span class="modal-title">Edição de conta</span>
+    <div class="row">
+      <div class="input-text">
+        <input type="hidden" id="modal-edit-account-id">
+        <label for="modal-edit-account-name">Nome</label>
+        <input name="modal-edit-account-name" id="modal-edit-account-name" type="text">
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <a id="btnEditAccount" class="modal-action modal-close btn-flat">Editar</a>
     <a class="modal-action modal-close btn-flat">Cancelar</a>
   </div>
 </div>
