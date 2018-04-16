@@ -116,11 +116,12 @@
 <div id="goals" class="container">
   {% if goals %}
     {% for goal in goals %}
-      <!-- movimentação -->
-      <div class="card">
+      <!-- meta -->
+      <div class="goal card">
         <div class="card-content">
           <div class="row">
             <div class="col s12 m6 l6">
+              <input type="hidden" class="goalId" value="{{ goal._id }}">
               <span class="card-title"><a href="/mamom/goals/{{ goal._id }}">{{ goal.name }}</a></span>
             </div>
             <div class="col s12 m6 l6">
@@ -165,6 +166,40 @@
 
   <div class="modal-footer">
     <a id="btnCreateGoal" class="modal-action modal-close btn-flat">Criar</a>
+    <a class="modal-action modal-close btn-flat">Cancelar</a>
+  </div>
+</div>
+
+
+
+<!-- modal de edição de meta -->
+<div id="modal-edit-goal" class="modal">
+  <div class="modal-content">
+    <span class="modal-title">Editar meta</span>
+    <div class="row">
+
+      <input type="hidden" id="modal-edit-goal-id">
+
+      <div class="input-text">
+        <label for="modal-edit-goal-name">Nome</label>
+        <input name="modal-edit-goal-name" id="modal-edit-goal-name" type="text">
+      </div>
+
+      <div class="input-text">
+        <label for="modal-edit-goal-deadline">Prazo</label>
+        <input name="modal-edit-goal-deadline" id="modal-edit-goal-deadline" type="date">
+      </div>
+
+      <div class="input-text">
+        <label for="modal-edit-goal-value">Valor</label>
+        <input name="modal-edit-goal-value" id="modal-edit-goal-value" type="number" value="0">
+      </div>
+
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <a id="btnEditGoal" class="modal-action modal-close btn-flat">Editar</a>
     <a class="modal-action modal-close btn-flat">Cancelar</a>
   </div>
 </div>

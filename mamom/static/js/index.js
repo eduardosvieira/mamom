@@ -12,6 +12,32 @@ $(document).ready(function(){
 
   $('.modal').modal();
 
+  $("btnEditGoal").click(function(event){
+    var goalId = $("#modal-edit-goal-id").val();
+
+    var name = $("#modal-edit-goal-name").val();
+    var deadline = $("#modal-edit-goal-deadline").val();
+    var value = $("#modal-edit-goal-value").val();
+
+    $.ajax({
+      url: URL + "/mamom/goals/" + goalId + "/",
+      type: "PUT",
+      data: {"name": name, "deadline": deadline, "value": value},
+      success: function(data) {
+        window.location.replace(URL + "/mamom/");
+      }
+    });
+  });
+
+  $(".goal").dblclick(function(event){
+    var goalId = $(this).children().children().children().children(".goalId").val();
+
+    $("#modal-edit-goal-id").attr("value", goalId);
+
+    $("#modal-edit-goal").modal("open");
+
+  });
+
   $("#btnEditAccount").click(function(event){
     var accountId = $("#modal-edit-account-id").val();
     var name = $("#modal-edit-account-name").val();
