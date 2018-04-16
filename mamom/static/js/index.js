@@ -12,6 +12,16 @@ $(document).ready(function(){
 
   $('.modal').modal();
 
+  $("#btnDeleteUser").click(function(event) {
+    $.ajax({
+      url: URL + "/mamom/users/",
+      type: "DELETE",
+      success: function(data) {
+        window.location.replace(URL + "/mamom/");
+      }
+    });
+  });
+
   $("#btnDeleteAccount").click(function(event) {
     var accountId = $("#modal-edit-account-id").val();
 

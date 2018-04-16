@@ -4,6 +4,19 @@ from mamom import app
 
 from mamom.models.User import User
 
+
+@app.route("/mamom/users/", methods=["DELETE"])
+def delete_user():
+    try:
+        user = User(id=session["_id"])
+
+        if user.deleteUser():
+            return redirect("/mamom/logout/")
+        else:
+            return "Error", 400
+    except Exception as e:
+        return "Error", 400
+
 @app.route("/mamom/logout/", methods=["GET"])
 def logout():
     try:

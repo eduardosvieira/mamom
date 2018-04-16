@@ -13,6 +13,14 @@ class User():
         self.email = email
         self.password = password
 
+    def deleteUser(self):
+        try:
+            db.users.remove({"_id": ObjectId(self.id)})
+
+            return True
+        except:
+            return False
+
 
     def getUserById(self, userId):
         try:

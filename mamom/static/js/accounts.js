@@ -30,6 +30,17 @@ $(document).ready(function(){
   $('select').material_select();
 
 
+  $("#btnDeleteUser").click(function(event) {
+    $.ajax({
+      url: URL + "/mamom/users/",
+      type: "DELETE",
+      success: function(data) {
+        window.location.replace(URL + "/mamom/");
+      }
+    });
+  });
+
+
   $("#btnDeleteTransation").click(function(event) {
     var accountId = $("#accountId").val();
     var transationId = $("#modal-edit-transation-id").val();
