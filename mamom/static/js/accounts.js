@@ -37,7 +37,7 @@ $(document).ready(function(){
     var categoryId = $("#modal-edit-transation-category :checked").val();
 
     $.ajax({
-      url: URL + "/mamom/accounts/" + accountId + "/",
+      url: URL + "/mamom/transations/" + transationId + "/",
       type: "PUT",
       data: {"name": name, "createdAt": createdAt, "value": value, "categoryId": categoryId},
       success: function(data) {

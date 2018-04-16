@@ -11,6 +11,22 @@ class Transation():
         self.account = account
         self.value = value
 
+    def updateTransation(self):
+        try:
+            db.transations.update({"_id": ObjectId(self.id)}, {
+                "$set": {
+                    "name": self.name,
+                    "createdAt": self.createdAt,
+                    "category": self.category,
+                    "value": self.value
+                }
+            })
+
+            return True
+        except:
+            return False
+
+
     def getAllTransationsByUserId(self, userId):
         try:
             transations = db.transations.find({"account.user._id": ObjectId(userId)})

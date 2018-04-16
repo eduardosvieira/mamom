@@ -6,6 +6,28 @@ from mamom.models.Account import Account
 from mamom.models.Transation import Transation
 
 
+@app.route("/mamom/transations/<transation_id>/", methods=["PUT"])
+def update_transation(transation_id):
+    try:
+        name = request.form.get("name")
+        createdAt = request.form.get("createdAt")
+        categoryId = request.form.get("categoryId")
+        category = Category().getCategoryById(categoryId)
+
+        value = float(request.form.get("value"))
+
+        print(value)
+
+        transation = Transation(id=transation_id, name=name, createdAt=createdAt, value=value, category=category)
+
+        if transation.updateTransation():
+            return "OK", 200
+        else:
+            return "Error", 400
+    except  Exception as e:
+        return "Error", 400
+
+
 @app.route("/mamom/transations/", methods=["POST"])
 def create_transation():
     try:
