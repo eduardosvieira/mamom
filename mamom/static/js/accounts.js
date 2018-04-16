@@ -29,7 +29,48 @@ $(document).ready(function(){
 
   $('select').material_select();
 
-  $("#btnCreateAccount").click(function(event){
+  $("#btnEditTransation").click(function(event){
+    var transationId = $("#modal-edit-transation-id").val();
+    var name = $("#modal-edit-transation-name").val();
+    var createdAt = $("#modal-edit-transation-createdAt").val();
+    var value = $("#modal-edit-transation-value").val();
+    var categoryId = $("#modal-edit-transation-category :checked").val();
+
+    $.ajax({
+      url: URL + "/mamom/accounts/" + accountId + "/",
+      type: "PUT",
+      data: {"name": name, "createdAt": createdAt, "value": value, "categoryId": categoryId},
+      success: function(data) {
+        window.location.replace(URL + "/mamom/");
+      }
+    });
+  });
+
+
+  $(".transation").dblclick(function(event){
+    var transationId = $(this).children().children().children().children(".transationId").val();
+
+    $("#modal-edit-transation-id").attr("value", transationId);
+
+    /*carregando categorias*/
+    $.ajax({
+      url: URL + "/mamom/categories/",
+      type: "GET",
+      success: function(data) {
+        $("#modal-edit-transation-category").empty();
+
+        for(index in data) {
+          $("#modal-edit-transation-category").append($("<option />").text(data[index]["name"]).attr("value", data[index]["_id"]))
+        }
+
+        $('select').material_select();
+      }
+    });
+
+    $("#modal-edit-transation").modal('open');
+  });
+
+  $("#btnCreateTransation").click(function(event){
     var accountId = $("#accountId").val();
     var name = $("#name").val();
     var categoryId = $("#category :checked").val();
