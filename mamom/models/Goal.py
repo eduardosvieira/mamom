@@ -11,6 +11,14 @@ class Goal():
         self.deadline = deadline
         self.user = user
 
+    def deleteGoal(self):
+        try:
+            db.goals.remove({"_id": ObjectId(self.id)})
+
+            return True
+        except:
+            return False
+
     def updateGoal(self):
         try:
             db.goals.update({"_id": ObjectId(self.id)}, {

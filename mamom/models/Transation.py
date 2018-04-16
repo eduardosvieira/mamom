@@ -11,6 +11,15 @@ class Transation():
         self.account = account
         self.value = value
 
+    def deleteTransation(self):
+        try:
+            db.transations.remove({"_id": ObjectId(self.id)})
+
+            return True
+        except:
+            return False
+            
+
     def updateTransation(self):
         try:
             db.transations.update({"_id": ObjectId(self.id)}, {

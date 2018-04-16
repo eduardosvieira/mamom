@@ -4,6 +4,18 @@ from mamom import app
 from mamom.models.Goal import Goal
 from mamom.models.User import User
 
+@app.route("/mamom/goals/<goal_id>/", methods=["DELETE"])
+def delete_goal(goal_id):
+    try:
+        goal = Goal(id=goal_id)
+
+        if goal.deleteGoal():
+            return "OK", 200
+        else:
+            return "Error", 400
+    except Exception as e:
+        return "Error", 400
+
 @app.route("/mamom/goals/<goal_id>/", methods=["PUT"])
 def update_goal(goal_id):
     try:

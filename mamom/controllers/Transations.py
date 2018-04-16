@@ -5,6 +5,18 @@ from mamom.models.Category import Category
 from mamom.models.Account import Account
 from mamom.models.Transation import Transation
 
+@app.route("/mamom/transations/<transation_id>/", methods=["DELETE"])
+def delete_transation(transation_id):
+    try:
+        transation = Transation(id=transation_id)
+
+        if transation.deleteTransation():
+            return "OK", 200
+        else:
+            return "Error", 400
+    except Exception as e:
+        return "Error", 400
+
 
 @app.route("/mamom/transations/<transation_id>/", methods=["PUT"])
 def update_transation(transation_id):

@@ -9,6 +9,19 @@ from mamom.models.User import User
 from mamom.models.Transation import Transation
 
 
+@app.route("/mamom/accounts/<account_id>/", methods=["DELETE"])
+def delete_account(account_id):
+    try:
+        account = Account(id=account_id)
+
+        if account.deleteAccount():
+            return "OK", 200
+        else:
+            return "Error", 400
+    except Exception as e:
+        return "Error", 400
+        
+
 @app.route("/mamom/accounts/<account_id>/", methods=["PUT"])
 def update_account(account_id):
     try:
