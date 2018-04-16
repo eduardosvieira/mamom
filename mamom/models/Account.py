@@ -9,6 +9,15 @@ class Account():
         self.balance = balance
         self.user = user
 
+    def updateAccount(self):
+        try:
+            db.accounts.update({"_id": ObjectId(self.id)}, {"$set": {"name": self.name}})
+
+            return True
+        except:
+            return False
+            
+
     def getTotalBalance(self, accounts):
         pass
 
