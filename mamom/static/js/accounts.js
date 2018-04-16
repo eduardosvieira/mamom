@@ -29,6 +29,20 @@ $(document).ready(function(){
 
   $('select').material_select();
 
+
+  $("#btnDeleteTransation").click(function(event) {
+    var accountId = $("#accountId").val();
+    var transationId = $("#modal-edit-transation-id").val();
+
+    $.ajax({
+      url: URL + "/mamom/transations/" + transationId + "/",
+      type: "DELETE",
+      success: function(data) {
+        window.location.replace(URL + "/mamom/accounts/" + accountId + "/");
+      }
+    });
+  });
+
   $("#btnEditTransation").click(function(event){
     var transationId = $("#modal-edit-transation-id").val();
     var name = $("#modal-edit-transation-name").val();

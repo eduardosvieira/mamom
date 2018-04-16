@@ -12,6 +12,30 @@ $(document).ready(function(){
 
   $('.modal').modal();
 
+  $("#btnDeleteAccount").click(function(event) {
+    var accountId = $("#modal-edit-account-id").val();
+
+    $.ajax({
+      url: URL + "/mamom/accounts/" + accountId + "/",
+      type: "DELETE",
+      success: function(data) {
+        window.location.replace(URL + "/mamom/");
+      }
+    });
+  });
+
+  $("#btnDeleteGoal").click(function(event) {
+    var goalId = $("#modal-edit-goal-id").val();
+
+    $.ajax({
+      url: URL + "/mamom/goals/" + goalId + "/",
+      type: "DELETE",
+      success: function(data) {
+        window.location.replace(URL + "/mamom/");
+      }
+    });
+  });
+
   $("#btnEditGoal").click(function(event){
     var goalId = $("#modal-edit-goal-id").val();
 
