@@ -12,7 +12,7 @@ $(document).ready(function(){
 
   $('.modal').modal();
 
-  $("btnEditGoal").click(function(event){
+  $("#btnEditGoal").click(function(event){
     var goalId = $("#modal-edit-goal-id").val();
 
     var name = $("#modal-edit-goal-name").val();
