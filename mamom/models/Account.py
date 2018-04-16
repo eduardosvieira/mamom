@@ -10,8 +10,7 @@ class Account():
         self.user = user
 
     def getTotalBalance(self, accounts):
-        try:
-            db.accounts.aggregate([{ $group: {_id: "$status", total: { $sum: "$balance" } } } ])
+        pass
 
     def credit(self, transation=None):
         try:

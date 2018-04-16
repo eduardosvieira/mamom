@@ -2,6 +2,8 @@ from flask import request, render_template, redirect, session
 
 from mamom import app, db
 
+from bson.objectid import ObjectId
+
 from mamom.models.Account import Account
 from mamom.models.User import User
 from mamom.models.Transation import Transation
@@ -11,10 +13,11 @@ def get_account(account_id):
     try:
         account = Account().getAccountById(account_id)
 
-        if account["user"]["_id"] == session["_id"]:
+        if(account["user"]["_id"] == ObjectId(session["_id"])):
             transations = Transation().getAllTransationsByAccountId(account_id)
-
             return render_template("accounts/accounts.html", account=account, transations=transations)
+        else:
+            return "Erro"
     except Exception as e:
         return "Permissão negada!", 403
 
