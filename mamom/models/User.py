@@ -13,6 +13,16 @@ class User():
         self.email = email
         self.password = password
 
+    def updateUser(self):
+        db.users.update({"_id": ObjectId(self.id)}, {
+            "$set": {
+                "name": self.name,
+                "email": self.email
+            }
+        })
+
+        return True
+
     def deleteUser(self):
         try:
             db.users.remove({"_id": ObjectId(self.id)})
