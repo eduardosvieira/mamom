@@ -1,5 +1,6 @@
 # mamom-project
-financial application management system
+Mamom is a financial application management system.
+Your name is a translation of the Hebrew word "Mammon" (מָמוֹן), which literally means "money."
 
 ## To help us to develop Mamom Project
 [Trelo](https://goo.gl/Ei86PP)
