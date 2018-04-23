@@ -20,7 +20,7 @@ def delete_account(account_id):
             return "Error", 400
     except Exception as e:
         return "Error", 400
-        
+
 
 @app.route("/mamom/accounts/<account_id>/", methods=["PUT"])
 def update_account(account_id):
@@ -43,7 +43,16 @@ def get_account(account_id):
 
         if(account["user"]["_id"] == ObjectId(session["_id"])):
             transations = Transation().getAllTransationsByAccountId(account_id)
-            return render_template("accounts/accounts.html", account=account, transations=transations)
+
+            #totalExpenses = Account().getTotalExpenses(transations)
+            #totalIncomes = Account().getTotalIncomes(transations)
+            #total = totalIncomes - totalExpenses
+
+            totalIncomes = 0
+            totalExpenses = 0
+            total = 0
+
+            return render_template("accounts/accounts.html", account=account, transations=transations, totalIncomes=totalIncomes, totalExpenses=totalExpenses, total=total)
         else:
             return "Erro"
     except Exception as e:
