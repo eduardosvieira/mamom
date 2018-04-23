@@ -39,15 +39,17 @@
     </div>
 
     <div>
-      <h4 class="center-align">R$ 100,00</h4>
+      <!-- valor do saldo -->
+      <h4 class="center-align">R$ {{ total }}</h4>
       <div class="container">
         <div class="row">
+          <!-- valor total despesas-->
           <div class="col s12 m6 l6">
-            <p class="left-align">R$ 100,00</p>
+            <p class="left-align">R$ {{ totalExpenses }}</p>
           </div>
           <!-- valor total receitas -->
           <div class="col s12 m6 l6">
-            <p class="right-align">R$ {{ totalExpenses }}</p>
+            <p class="right-align">R$ {{ totalIncomes }}</p>
           </div>
         </div>
       </div>

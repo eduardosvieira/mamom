@@ -9,6 +9,14 @@ class Account():
         self.balance = balance
         self.user = user
 
+    def getTotalBalance(self, accounts=None):
+        sum = 0
+        for account in accounts:
+            sum += account["balance"]
+
+        return sum
+
+
     def getTotalExpenses(self, transations=None):
         try:
             sum = 0

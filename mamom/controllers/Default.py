@@ -16,7 +16,14 @@ def index():
 
         totalExpenses = Account().getTotalExpenses(transations)
         totalIncomes = Account().getTotalIncomes(transations)
+        total = Account().getTotalBalance(accounts)
 
-        return render_template("index.html", accounts=accounts, transations=transations, goals=goals, totalExpenses=totalExpenses, totalIncomes=totalIncomes)
+        sum = 0
+        for account in accounts:
+            sum += account["balance"]
+
+        total = sum
+
+        return render_template("index.html", accounts=accounts, transations=transations, goals=goals, totalExpenses=totalExpenses, totalIncomes=totalIncomes, total=total)
     else:
         return redirect("/mamom/login/")
