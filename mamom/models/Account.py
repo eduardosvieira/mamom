@@ -9,6 +9,18 @@ class Account():
         self.balance = balance
         self.user = user
 
+    def getTotalExpenses(self, transations=None):
+        try:
+            sum = 0
+
+            for transation in transations:
+                if transation["value"] > 0:
+                    sum += transation["value"]
+
+            return sum
+        except:
+            return 0
+
     def deleteAccount(self):
         try:
             db.accounts.remove({"_id": ObjectId(self.id)})

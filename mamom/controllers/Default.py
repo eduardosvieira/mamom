@@ -14,6 +14,8 @@ def index():
         transations = Transation().getAllTransationsByUserId(session["_id"])
         goals = Goal().getAllGoalsByUserId(session["_id"])
 
-        return render_template("index.html", accounts=accounts, transations=transations, goals=goals)
+        totalExpenses = Account().getTotalExpenses(transations)
+
+        return render_template("index.html", accounts=accounts, transations=transations, goals=goals, totalExpenses=totalExpenses)
     else:
         return redirect("/mamom/login/")
