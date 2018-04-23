@@ -9,7 +9,7 @@ class Account():
         self.balance = balance
         self.user = user
 
-    def getTotalBalance(self, accounts=None):
+    def getTotalBalance(self, accounts):
         sum = 0
         for account in accounts:
             sum += account["balance"]
@@ -56,10 +56,6 @@ class Account():
             return True
         except:
             return False
-
-
-    def getTotalBalance(self, accounts):
-        pass
 
     def credit(self, transation=None):
         try:

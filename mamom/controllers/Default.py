@@ -16,13 +16,7 @@ def index():
 
         totalExpenses = Account().getTotalExpenses(transations)
         totalIncomes = Account().getTotalIncomes(transations)
-        total = Account().getTotalBalance(accounts)
-
-        sum = 0
-        for account in accounts:
-            sum += account["balance"]
-
-        total = sum
+        total = totalIncomes - totalExpenses
 
         return render_template("index.html", accounts=accounts, transations=transations, goals=goals, totalExpenses=totalExpenses, totalIncomes=totalIncomes, total=total)
     else:
