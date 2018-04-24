@@ -19,6 +19,8 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
 
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
   <script src="{{ url_for('static', filename='js/investments.js')}}"></script>
 
   <title>Mamom</title>
@@ -43,6 +45,10 @@
       <div class="card-content">
         <input id="value" type="number" value="0">
       </div>
+    </div>
+
+    <div class="row">
+      <div id="chartContainer" style="height: 300px;">
     </div>
 
     <div id="investments">
