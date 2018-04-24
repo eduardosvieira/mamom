@@ -44,13 +44,9 @@ def get_account(account_id):
         if(account["user"]["_id"] == ObjectId(session["_id"])):
             transations = Transation().getAllTransationsByAccountId(account_id)
 
-            #totalExpenses = Account().getTotalExpenses(transations)
-            #totalIncomes = Account().getTotalIncomes(transations)
-            #total = totalIncomes - totalExpenses
-
-            totalIncomes = 0
             totalExpenses = 0
-            total = 0
+            totalIncomes = 0
+            total = totalIncomes - totalExpenses
 
             return render_template("accounts/accounts.html", account=account, transations=transations, totalIncomes=totalIncomes, totalExpenses=totalExpenses, total=total)
         else:

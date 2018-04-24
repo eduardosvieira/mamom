@@ -14,9 +14,11 @@ def index():
         transations = Transation().getAllTransationsByUserId(session["_id"])
         goals = Goal().getAllGoalsByUserId(session["_id"])
 
-        totalExpenses = Account().getTotalExpenses(transations)
-        totalIncomes = Account().getTotalIncomes(transations)
-        total = totalIncomes - totalExpenses
+        totalIncomes = 0
+        totalExpenses = 0
+        total = 0
+
+        print(transations[0])
 
         return render_template("index.html", accounts=accounts, transations=transations, goals=goals, totalExpenses=totalExpenses, totalIncomes=totalIncomes, total=total)
     else:
