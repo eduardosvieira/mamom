@@ -11,6 +11,11 @@ class Goal():
         self.deadline = deadline
         self.user = user
 
+    def getGoalById(self, goalId=0):
+        goal = db.goals.find_one({"_id": ObjectId(goalId)})
+
+        return goal
+
     def deleteGoal(self):
         try:
             db.goals.remove({"_id": ObjectId(self.id)})

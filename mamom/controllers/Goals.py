@@ -1,4 +1,4 @@
-from flask import request, session
+from flask import request, session, render_template
 from mamom import app
 
 from mamom.models.Goal import Goal
@@ -8,7 +8,7 @@ from mamom.models.User import User
 def get_goal(goal_id):
     goal = Goal().getGoalById(goal_id)
 
-    return render_template("goals/goals.html")
+    return render_template("goals/goals.html", goal=goal)
 
 
 @app.route("/mamom/goals/<goal_id>/", methods=["DELETE"])
