@@ -4,6 +4,13 @@ from mamom import app
 from mamom.models.Goal import Goal
 from mamom.models.User import User
 
+@app.route("/mamom/goals/<goal_id>/", methods=["GET"])
+def get_goal(goal_id):
+    goal = Goal().getGoalById(goal_id)
+
+    return render_template("goals/goals.html")
+
+
 @app.route("/mamom/goals/<goal_id>/", methods=["DELETE"])
 def delete_goal(goal_id):
     try:
