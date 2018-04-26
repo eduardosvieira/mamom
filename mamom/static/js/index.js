@@ -36,8 +36,6 @@ $(document).ready(function(){
 
   $('.modal').modal();
 
-  chart.render();
-
   $("#btnDeleteUser").click(function(event) {
     $.ajax({
       url: URL + "/mamom/users/",
