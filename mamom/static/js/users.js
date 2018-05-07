@@ -6,6 +6,17 @@ var URL = PROTOCOL + "//" + HOSTNAME + ":" + PORT;
 
 
 $(document).ready(function(event){
+  $("#newPassword2").on("change", function(event) {
+    var $p1 = $("#newPassword");
+
+    if($p1.val() == $(this).val()) {
+      $(this).css("border-bottom", "1px solid green");
+    } else {
+      $(this).css("border-bottom", "1px solid red");
+    }
+  });
+
+
   $("#btnEditPI").click(function(event){
     var userId = $("#userId").val();
     var name = $("#name").val();
