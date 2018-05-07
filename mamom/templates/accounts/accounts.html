@@ -50,7 +50,8 @@
       {% if transations %}
         {% for transation in transations %}
           <!-- movimentação -->
-          <div class="card">
+          <div class="card transation">
+            <input type="hidden" class="transationId" value="{{ transation._id }}">
             <div class="card-content">
               <div class="row">
                 <div class="col s12 m6 l6">

@@ -55,6 +55,7 @@ $(document).ready(function(){
   });
 
   $("#btnEditTransation").click(function(event){
+    var accountId = $("#accountId").val();
     var transationId = $("#modal-edit-transation-id").val();
     var name = $("#modal-edit-transation-name").val();
     var createdAt = $("#modal-edit-transation-createdAt").val();
@@ -66,14 +67,14 @@ $(document).ready(function(){
       type: "PUT",
       data: {"name": name, "createdAt": createdAt, "value": value, "categoryId": categoryId},
       success: function(data) {
-        window.location.replace(URL + "/mamom/");
+        window.location.replace(URL + "/mamom/accounts/" + accountId + "/");
       }
     });
   });
 
 
   $(".transation").dblclick(function(event){
-    var transationId = $(this).children().children().children().children(".transationId").val();
+    var transationId = $(this).children(".transationId").val();
 
     $("#modal-edit-transation-id").attr("value", transationId);
 
@@ -94,6 +95,7 @@ $(document).ready(function(){
 
     $("#modal-edit-transation").modal('open');
   });
+
 
   $("#btnCreateTransation").click(function(event){
     var accountId = $("#accountId").val();

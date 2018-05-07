@@ -18,6 +18,7 @@ $(document).ready(function(){
       url: URL + "/mamom/users/",
       type: "DELETE",
       success: function(data) {
+
         window.location.replace(URL + "/mamom/");
       }
     });
@@ -31,6 +32,7 @@ $(document).ready(function(){
       type: "DELETE",
       success: function(data) {
         window.location.replace(URL + "/mamom/");
+
       }
     });
   });
@@ -83,6 +85,7 @@ $(document).ready(function(){
       data: {"name": name},
       success: function(data) {
         window.location.replace(URL + "/mamom/");
+
       }
     });
   });
@@ -128,14 +131,17 @@ $(document).ready(function(){
         type: "POST",
         data: {"name": name, "balance": balance},
         success: function(data) {
-          window.location.replace(URL + "/mamom/")
+          window.location.replace(URL + "/mamom/");
+
         },
         error: function(data) {
-          $("#error").css("display", "block").text("Não foi possível criar uma nova conta agora. Tente mais tarde!");
+          $("#message-account").css("display", "block").text("Houve um problema. Tente mais tarde!");
+
         }
       });
     } else {
-      $("#error").css("display", "block").text("O nome da conta não ser vazio!");
+      $("#message-account").css("display", "block").text("O nome da conta não pode ser vazio!");
+
     }
   });
 
