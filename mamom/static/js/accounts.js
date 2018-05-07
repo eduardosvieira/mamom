@@ -4,28 +4,6 @@ var PORT = window.location.port;
 
 var URL = PROTOCOL + "//" + HOSTNAME + ":" + PORT;
 
-window.onload = function () {
-  var chart = new CanvasJS.Chart("chartContainer", {
-
-    title:{
-      text: "Receitas x Despesas"
-    },
-    data: [//array of dataSeries
-      { //dataSeries object
-
-       /*** Change type "column" to "bar", "area", "line" or "pie"***/
-       type: "pie",
-       dataPoints: [
-       { label: "Depesas", y: 29 },
-       { label: "Receitas", y: 40 }
-       ]
-     }
-     ]
-   });
-
-  chart.render();
-}
-
 function fillModalCreateTransation() {
   $.ajax({
     url: URL + "/mamom/categories/",
