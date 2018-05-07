@@ -13,14 +13,22 @@ def redirect_to_edit_user():
 
 @app.route("/mamom/users/<user_id>/", methods=["PUT"])
 def update_user(user_id):
-    name = request.form.get("name")
-    email = request.form.get("email")
+    try:
+        name = request.form.get("name")
+        email = request.form.get("email")
 
-    user = User(id=user_id, name=name, email=email)
+        user = User(id=user_id, name=name, email=email)
 
-    user.updateUser()
+        if user.UserAlreadyExists():
+            u = user.getUserById(user_id)
+            if u["email"] != email:
+                return "Este e-mail já está sendo usado por outro usuário!", 400
 
-    return "OK", 200
+        user.updateUser()
+
+        return "OK", 200
+    except:
+        return "Error", 400
 
 @app.route("/mamom/users/", methods=["DELETE"])
 def delete_user():

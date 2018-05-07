@@ -17,6 +17,9 @@ $(document).ready(function(event){
       data: {"name": name, "email": email},
       success: function(data) {
         window.location.replace(URL + "/mamom/");
+      },
+      error: function(data) {
+        $("#email-error").css("display", "block").css("color", "red").text(data["responseText"]);
       }
     });
   });
