@@ -31,28 +31,36 @@
   <nav class="nav-extended #7e57c2 deep-purple lighten-1">
     <div class="nav-wrapper">
       <a href="/mamom/" class="brand-logo center">Mamom</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/mamom/users/">Configurações</a></li>
+          <li><a href="/mamom/investments/">Nova Simulação</a></li>
+          <li><a href="/mamom/logout/">Sair</a></li>
+        </ul>
 
         <ul id="slide-out" class="side-nav">
           <li><a href="/mamom/users/">Configurações</a></li>
-          <li><a href="/mamom/investments/">Simular</a></li>
+          <li><a href="/mamom/investments/">Nova Simulação</a></li>
           <li><a href="/mamom/logout/">Sair</a></li>
         </ul>
-        <a data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+        <a data-activates="slide-out" class="button-collapse show-on-med-and-down"><i class="material-icons">menu</i></a>
     </div>
 
     <div>
-      <!-- valor do saldo -->
-      <h4 class="center-align">R$ {{ total }}</h4>
-      <div class="container">
-        <div class="row">
-          <!-- valor total despesas-->
-          <div class="col s12 m6 l6">
-            <p class="left-align">R$ {{ totalExpenses }}</p>
-          </div>
-          <!-- valor total receitas -->
-          <div class="col s12 m6 l6">
-            <p class="right-align">R$ {{ totalIncomes }}</p>
-          </div>
+      <div class="row">
+
+        <!-- valor total despesas-->
+        <div class="col s4 m4 l4">
+          <p class="left-align">R$ {{ totalExpenses }}</p>
+        </div>
+
+        <!-- valor do saldo -->
+        <div class="col s4 m4 l4">
+          <h4 class="center-align">R$ {{ total }}</h4>
+        </div>
+
+        <!-- valor total receitas -->
+        <div class="col s4 m4 l4">
+          <p class="right-align">R$ {{ totalIncomes }}</p>
         </div>
       </div>
     </div>
@@ -66,22 +74,83 @@
     </div>
   </nav>
 
-  <div id="accounts" class="container">
+  <div class="container">
+    <div id="accounts">
 
-    <p style="display:None"><p>
+      <p id="message-account-painel" style="display:none"><p>
 
-    {% if accounts %}
-      {% for account in accounts %}
-        <!-- conta -->
-        <div class="account card">
+      {% if accounts %}
+        {% for account in accounts %}
+          <!-- conta -->
+          <div class="account card">
+            <div class="card-content">
+              <div class="row">
+                <div class="col s12 m6 l6">
+                  <input class="accountId" type="hidden" value="{{ account._id }}">
+                  <span class="card-title"><a href="/mamom/accounts/{{ account._id }}/">{{ account.name }}</a></span>
+                </div>
+                <div class="col s12 m6 l6">
+                  <span class="card-title">R$ {{ account.balance }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      <div class="fixed-action-btn">
+        <a href="#modal-create-account" class="btn-floating btn-large modal-trigger red">
+          <i class="large material-icons">add</i>
+        </a>
+      </div>
+    </div>
+
+    <div id="history">
+
+      <p id="message-history-painel" style="display:none"><p>
+
+      <!--<div class="row">
+        <div id="chartContainer" style="height: 300px;"></div>
+      </div>-->
+
+      <div class="row">
+        {% if transations %}
+          {% for transation in transations %}
+            <!-- movimentação -->
+            <div class="card">
+              <div class="card-content">
+                <div class="row">
+                  <div class="col s12 m6 l6">
+                    <span class="card-title">{{ transation.name }}</span>
+                  </div>
+                  <div class="col s12 m6 l6">
+                    <span class="card-title">R$ {{ transation.value }} </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          {% endfor %}
+        {% endif %}
+      </div>
+
+  </div>
+
+  <div id="goals">
+    <p id="message-goal-painel" style="display:none"><p>
+
+    {% if goals %}
+      {% for goal in goals %}
+        <!-- meta -->
+        <div class="goal card">
           <div class="card-content">
             <div class="row">
               <div class="col s12 m6 l6">
-                <input class="accountId" type="hidden" value="{{ account._id }}">
-                <span class="card-title"><a href="/mamom/accounts/{{ account._id }}/">{{ account.name }}</a></span>
+                <input type="hidden" class="goalId" value="{{ goal._id }}">
+                <span class="card-title"><a href="/mamom/goals/{{ goal._id }}">{{ goal.name }}</a></span>
               </div>
               <div class="col s12 m6 l6">
-                <span class="card-title">R$ {{ account.balance }}</span>
+                <span class="card-title">R$ {{ goal.value }} </span>
               </div>
             </div>
           </div>
@@ -90,68 +159,13 @@
     {% endif %}
 
     <div class="fixed-action-btn">
-      <a href="#modal-create-account" class="btn-floating btn-large modal-trigger red">
+      <a href="#modal-create-goal" class="btn-floating btn-large modal-trigger red">
         <i class="large material-icons">add</i>
       </a>
     </div>
   </div>
 
-  <div id="history" class="container">
-
-    <div class="row">
-      <div id="chartContainer" style="height: 300px;"></div>
-    </div>
-
-    <div class="row">
-      {% if transations %}
-        {% for transation in transations %}
-          <!-- movimentação -->
-          <div class="card">
-            <div class="card-content">
-              <div class="row">
-                <div class="col s12 m6 l6">
-                  <span class="card-title">{{ transation.name }}</span>
-                </div>
-                <div class="col s12 m6 l6">
-                  <span class="card-title">R$ {{ transation.value }} </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        {% endfor %}
-      {% endif %}
-    </div>
-
-</div>
-
-<div id="goals" class="container">
-  {% if goals %}
-    {% for goal in goals %}
-      <!-- meta -->
-      <div class="goal card">
-        <div class="card-content">
-          <div class="row">
-            <div class="col s12 m6 l6">
-              <input type="hidden" class="goalId" value="{{ goal._id }}">
-              <span class="card-title"><a href="/mamom/goals/{{ goal._id }}">{{ goal.name }}</a></span>
-            </div>
-            <div class="col s12 m6 l6">
-              <span class="card-title">R$ {{ goal.value }} </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-  {% endif %}
-
-  <div class="fixed-action-btn">
-    <a href="#modal-create-goal" class="btn-floating btn-large modal-trigger red">
-      <i class="large material-icons">add</i>
-    </a>
   </div>
-</div>
-
 
 <!-- modal de criação de meta -->
 <div id="modal-create-goal" class="modal">
