@@ -13,6 +13,14 @@ class User():
         self.email = email
         self.password = password
 
+    def UserAlreadyExists(self):
+        user = db.users.find_one({"email": self.email})
+
+        if user:
+            return True
+        else:
+            return False
+
     def updateUser(self):
         db.users.update({"_id": ObjectId(self.id)}, {
             "$set": {

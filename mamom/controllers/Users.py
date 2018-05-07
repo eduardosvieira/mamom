@@ -86,6 +86,9 @@ def signup():
 
         user = User(name=name, email=email, password=password)
 
+        if user.UserAlreadyExists():
+            return render_template("signup/signup.html", error="Este e-mail já está sendo usado por outro usuário!")
+
         user.signUp()
 
         return redirect("/mamom/login/")

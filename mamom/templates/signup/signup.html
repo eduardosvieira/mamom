@@ -41,6 +41,11 @@
   <div class="container">
     <form action="/mamom/signup/" method="POST">
       <div class="row">
+        {% if error %}
+          <div class="input-field s12 m12 l12">
+            <span>{{ error }}</span>
+          </div>
+        {% endif %}
         <div class="input-field s12 m12 l12">
           <input name="name" id="name" type="text">
           <label for="name">Nome</label>
