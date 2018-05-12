@@ -18,8 +18,6 @@ def index():
         totalExpenses = 0
         total = 0
 
-        print(transations[0])
-
         return render_template("index.html", accounts=accounts, transations=transations, goals=goals, totalExpenses=totalExpenses, totalIncomes=totalIncomes, total=total)
     else:
         return redirect("/mamom/login/")
