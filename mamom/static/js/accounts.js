@@ -58,14 +58,12 @@ $(document).ready(function(){
     var accountId = $("#accountId").val();
     var transationId = $("#modal-edit-transation-id").val();
     var name = $("#modal-edit-transation-name").val();
-    var createdAt = $("#modal-edit-transation-createdAt").val();
-    var value = $("#modal-edit-transation-value").val();
     var categoryId = $("#modal-edit-transation-category :checked").val();
 
     $.ajax({
       url: URL + "/mamom/transations/" + transationId + "/",
       type: "PUT",
-      data: {"name": name, "createdAt": createdAt, "value": value, "categoryId": categoryId},
+      data: {"name": name, "categoryId": categoryId},
       success: function(data) {
         window.location.replace(URL + "/mamom/accounts/" + accountId + "/");
       }

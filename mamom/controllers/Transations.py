@@ -22,15 +22,10 @@ def delete_transation(transation_id):
 def update_transation(transation_id):
     try:
         name = request.form.get("name")
-        createdAt = request.form.get("createdAt")
         categoryId = request.form.get("categoryId")
         category = Category().getCategoryById(categoryId)
 
-        value = float(request.form.get("value"))
-
-        print(value)
-
-        transation = Transation(id=transation_id, name=name, createdAt=createdAt, value=value, category=category)
+        transation = Transation(id=transation_id, name=name, category=category)
 
         if transation.updateTransation():
             return "OK", 200

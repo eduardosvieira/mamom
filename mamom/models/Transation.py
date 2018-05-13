@@ -18,16 +18,14 @@ class Transation():
             return True
         except:
             return False
-            
+
 
     def updateTransation(self):
         try:
             db.transations.update({"_id": ObjectId(self.id)}, {
                 "$set": {
                     "name": self.name,
-                    "createdAt": self.createdAt,
                     "category": self.category,
-                    "value": self.value
                 }
             })
 
