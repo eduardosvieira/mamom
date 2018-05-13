@@ -47,25 +47,28 @@
           </div>
         {% endif %}
         <div class="input-field s12 m12 l12">
-          <input name="name" id="name" type="text">
+          <input name="name" id="name" type="text" required>
           <label for="name">Nome</label>
         </div>
 
         <div class="input-field s12 m12 l12">
-          <input name="email" id="email" type="email">
+          <input name="email" id="email" type="email" required>
           <label for="email">E-mail</label>
         </div>
 
         <div class="input-field s12 m12 l12">
-          <input name="password" id="password" type="password">
-          <label for="password">Senha</label>
+          <label>Senha</label>
+          <input id="newPassword" type="password" name="password" required>
         </div>
 
         <div class="input-field s12 m12 l12">
-          <input id="c-password" type="password">
-          <label for="c-password">Confirmar senha</label>
+          <label for="newPassword2">Confirmar senha</label>
+          <input type="password" id="newPassword2" required>
         </div>
-      </div>
+
+        <div class="input-field s12 m12 l12">
+          <span id="password-error" style="display: none"></span>
+        </div>
 
       <div class="row">
         <button type="submit" class="btn col s12 m6 l6 #7e57c2 deep-purple lighten-1">Cadastrar-se</button>
