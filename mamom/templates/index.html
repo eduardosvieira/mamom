@@ -75,26 +75,24 @@
 
       <p id="message-history-painel" style="display:none"><p>
 
-      <div class="row">
-        {% if transations %}
-          {% for transation in transations %}
-            <!-- movimentação -->
-            <div class="card">
-              <div class="card-content">
-                <div class="row">
-                  <div class="col s12 m6 l6">
-                    <span class="card-title">{{ transation.name }}</span>
-                  </div>
-                  <div class="col s12 m6 l6">
-                    <span class="card-title">R$ {{ transation.value }} </span>
-                  </div>
+      {% if transations %}
+        {% for transation in transations %}
+          <!-- movimentação -->
+          <div class="card">
+            <div class="card-content">
+              <div class="row">
+                <div class="col s12 m6 l6">
+                  <span class="card-title">{{ transation.name }}</span>
+                </div>
+                <div class="col s12 m6 l6">
+                  <span class="card-title">R$ {{ transation.value }} </span>
                 </div>
               </div>
             </div>
+          </div>
 
-          {% endfor %}
-        {% endif %}
-      </div>
+        {% endfor %}
+      {% endif %}
 
   </div>
 
@@ -130,10 +128,10 @@
   </div>
 
   <!-- módulo contendo modals de criação e edição de metas -->
-  {% include 'modals-goals.html' %}
+  {% include 'modals/goals.html' %}
 
   <!-- módulo contendo modals de criação e edição de contas -->
-  {% include 'modals-accounts.html' %}
+  {% include 'modals/accounts.html' %}
 
 </body>
 </html>
