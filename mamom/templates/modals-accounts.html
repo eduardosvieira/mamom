@@ -1,0 +1,51 @@
+
+
+<!-- modal de criação de conta -->
+<div id="modal-create-account" class="modal">
+  <div class="modal-content">
+    <span class="modal-title">Nova conta</span>
+    <div class="row">
+      <div class="input-text">
+        <label for="name">Nome</label>
+        <input name="name" id="name" type="text">
+      </div>
+
+      <div class="input-text">
+        <label for="balance">Saldo</label>
+        <input name="balance" id="balance" type="number" value="0">
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <a id="btnCreateAccount" class="modal-action modal-close btn-flat">Criar</a>
+    <a class="modal-action modal-close btn-flat">Cancelar</a>
+  </div>
+</div>
+
+
+<!-- modal de edição de conta -->
+<div id="modal-edit-account" class="modal">
+  <div class="modal-content">
+    <div class="row">
+      <div class="col s11 m11 l11">
+        <span class="modal-title">Editar conta</span>
+      </div>
+      <div class="col s1 m1 l1">
+        <a id="btnDeleteAccount"><i class="material-icons">remove</i></a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-text">
+        <input type="hidden" id="modal-edit-account-id">
+        <label for="modal-edit-account-name">Nome</label>
+        <input name="modal-edit-account-name" id="modal-edit-account-name" type="text">
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <a id="btnEditAccount" class="modal-action modal-close btn-flat">Editar</a>
+    <a class="modal-action modal-close btn-flat">Cancelar</a>
+  </div>
+</div>
