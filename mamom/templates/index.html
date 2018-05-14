@@ -110,7 +110,16 @@
                 <span class="card-title"><a href="/mamom/goals/{{ goal._id }}">{{ goal.name }}</a></span>
               </div>
               <div class="col s12 m6 l6">
-                <span class="card-title">R$ {{ goal.value }} </span>
+                <span class="card-title">{{ goal.balance }} / {{ goal.value }} </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12 m12 l12">
+                <div class="progress">
+                    <input type="hidden" class="goalValue" value="{{ goal.value }}">
+                    <input type="hidden" class="goalBalance" value="{{ goal.balance }}">
+                    <div class="progressBar determinate"></div>
+                </div
               </div>
             </div>
           </div>

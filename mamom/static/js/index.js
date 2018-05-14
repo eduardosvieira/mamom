@@ -13,6 +13,20 @@ $(document).ready(function(){
 
   $('.modal').modal();
 
+  function calculeProgress() {
+    $(".progressBar").each(function(index, element) {
+      var progress = ( $(this).siblings(".goalBalance").val() / $(this).siblings(".goalValue").val() ) * 100;
+      progress = "" + progress + "%";
+
+      console.log(progress);
+
+      $(this).css("width", progress);
+    });
+
+  }
+
+  calculeProgress();
+
   $("#btnDeleteUser").click(function(event) {
     $.ajax({
       url: URL + "/mamom/users/",
