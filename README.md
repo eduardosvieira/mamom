@@ -17,6 +17,25 @@ Your name is a translation of the Hebrew word "Mammon" (מָמוֹן), which lit
 ### Pymongo
 [PyMongo](https://api.mongodb.com/python/current/) is a Python distribution containing tools for working with MongoDB, and is the recommended way to work with MongoDB from Python.
 
+## Download and Install
+  #### Baixando o repositório
+  git clone https://github.com/euodeionomedeusuario/mamom.git
+  
+  #### Entrando na pasta
+  cd mamom
+  
+  #### Criando ambiente virtual
+  virtualenv venv -p python3
+  
+  #### Ativando ambiente virtual
+  source venv/bin/activate
+  
+  #### Instalando dependências
+  pip3 install -r requirements.txt
+  
+  #### Executando app
+  python3 run.py  
+
 ## License
 [MIT License](https://github.com/euodeionomedeusuario/mamom-project/blob/master/LICENSE) 2018 (c) Eduardo Silva Vieira
 
