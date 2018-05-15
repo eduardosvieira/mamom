@@ -4,6 +4,17 @@ from mamom import app
 from mamom.models.Goal import Goal
 from mamom.models.User import User
 
+@app.route("/mamom/goals/<goal_id>/balance/", methods=["PUT"])
+def deposit_value_in_goal(goal_id):
+    value = float(request.form.get("value"))
+
+    goal = Goal(id=goal_id, value=value)
+
+    if goal.updateBalance():
+        return "OK", 200
+    else:
+        return "Error", 400
+
 @app.route("/mamom/goals/<goal_id>/", methods=["GET"])
 def get_goal(goal_id):
     goal = Goal().getGoalById(goal_id)

@@ -11,6 +11,17 @@ class Goal():
         self.deadline = deadline
         self.user = user
 
+    def updateBalance(self):
+        try:
+            db.goals.update(
+                {"_id": ObjectId(self.id)},
+                { "$inc": { "balance": self.value}
+            })
+
+            return True
+        except:
+            return False
+
     def getGoalById(self, goalId=0):
         goal = db.goals.find_one({"_id": ObjectId(goalId)})
 
