@@ -7,6 +7,10 @@
 
   {% include 'css.html' %}
 
+  <script type="text/javascript" src="{{ url_for('static', filename='js/goals.js') }}">
+
+  </script>
+
   <title>Mamom</title>
 </head>
 <body>
@@ -31,8 +35,16 @@
   </nav>
 
   <div class="container">
-    <!-- lista de depósitos -->
+
+
+    <div class="fixed-action-btn">
+      <a href="#modal-deposit-in-goal" class="btn-floating btn-large modal-trigger red">
+        <i class="large material-icons">add</i>
+      </a>
+    </div>
   </div>
+
+  {% include 'modals/goals.html' %}
 
 </body>
 </html>
