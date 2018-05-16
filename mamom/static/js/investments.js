@@ -5,56 +5,70 @@ var PORT = window.location.port;
 
 var URL = PROTOCOL + "//" + HOSTNAME + ":" + PORT;
 
-window.onload = function () {
-  var chart = new CanvasJS.Chart("chartContainer", {
-
-    title:{
-      text: "Rendimento"
-    },
-    data: [//array of dataSeries
-      { //dataSeries object
-
-       /*** Change type "column" to "bar", "area", "line" or "pie"***/
-       type: "line",
-       dataPoints: [
-       { label: "Valor inicial", y: 50 },
-       { label: "Valor final", y: 560 }
-       ]
-     }
-     ]
-   });
-
-  chart.render();
-}
 
 $(document).ready(function(event) {
+  var savings = {
+    title: "Cardeneta de Poupança",
+    juros: 0.005,
+
+    calcule: function(value, months) {
+      return value * Math.pow(1 + this.juros, months);
+    }
+  };
+
+  var selic = {
+    title: "Tesouro SELIC",
+    juros: 0.00542,
+
+    calcule: function(value, months) {
+      return value * Math.pow(1 + this.juros, months);
+    }
+  };
+
+  var ipca = {
+    title: "Tesouro IPCA+",
+    juros: 0.0075,
+
+    calcule: function(value, months) {
+      return value * Math.pow(1 + this.juros, months);
+    }
+  };
+
   $("#value").change(function(event) {
     var value = $(this).val();
 
-    $.ajax({
-      url: URL + "/mamom/investments/",
-      type: "POST",
-      data: {
-        "value": value
-      },
-      success: function(data) {
-        $("#investments").empty();
+    investments = [savings, selic, ipca];
+    console.log(investments);
 
-        for(index in data) {
-          var $investment = $("<div />")
-                              .addClass("card")
+    $("#investments").empty();
+
+    for(index in investments) {
+      var $investment = $("<div />")
+                          .addClass("card")
+                          .append($("<div />")
+                            .addClass("card-content")
+                            .append($("<span />")
+                              .addClass("card-title")
+                              .text(investments[index].title))
+                            .append($("<div />")
+                              .addClass("row")
                               .append($("<div />")
-                                .addClass("card-content")
+                                .addClass("col s12 m6 l6")
+                                .append($("<label />")
+                                  .text("Valor Inicial"))
                                 .append($("<span />")
                                   .addClass("card-title")
-                                  .text(data[index]["name"]))
+                                  .text(Math.trunc(value))))
+                              .append($("<div />")
+                                .addClass("col s12 m6 l6")
+                                .append($("<label />")
+                                  .text("Valor após 6 meses"))
                                 .append($("<span />")
                                   .addClass("card-title")
-                                  .text(data[index]["value"])));
+                                  .text(Math.trunc(investments[index].calcule(value, 6)))))));
 
-          $("#investments").append($investment);
-        }
-      }
-    });
+      $("#investments").append($investment);
+    }
+
   });
 });
