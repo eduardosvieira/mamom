@@ -1,6 +1,8 @@
 from flask import request, session, render_template
 from mamom import app
 
+from bson.objectid import ObjectId
+
 from mamom.models.Goal import Goal
 from mamom.models.User import User
 
@@ -17,9 +19,15 @@ def deposit_value_in_goal(goal_id):
 
 @app.route("/mamom/goals/<goal_id>/", methods=["GET"])
 def get_goal(goal_id):
-    goal = Goal().getGoalById(goal_id)
+    try:
+        goal = Goal().getGoalById(goal_id)
 
-    return render_template("goals/goals.html", goal=goal)
+        if goal["user"]["_id"] == session["_id"]:
+            return render_template("errors/403.html")
+        else:
+            return render_template("goals/goals.html", goal=goal)
+    except:
+        return render_template("errors/403.html")
 
 
 @app.route("/mamom/goals/<goal_id>/", methods=["DELETE"])
