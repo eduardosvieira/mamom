@@ -68,15 +68,18 @@ def index_login():
 @app.route("/mamom/login/", methods=["POST"])
 def login():
     try:
-        email = request.form.get("email")
-        password = request.form.get("password")
-
-        user = User(email=email, password=password)
-
-        if user.login():
-            return redirect("/mamom/")
+        if "_id" in session:
+            redirect("/mamom/")
         else:
-            return render_template("login/login.html", error="Usuário ou senha estão incorretos!")
+            email = request.form.get("email")
+            password = request.form.get("password")
+
+            user = User(email=email, password=password)
+
+            if user.login():
+                return redirect("/mamom/")
+            else:
+                return render_template("login/login.html", error="Usuário ou senha estão incorretos!")
 
     except Exception as e:
         return "Error", 400
