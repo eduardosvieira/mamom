@@ -6,9 +6,15 @@ from mamom.models.User import User
 
 @app.route("/mamom/settings/", methods=["GET"])
 def redirect_to_edit_user():
-    user = User().getUserById(session["_id"])
+    try:
+        if "_id" == session:
+            user = User().getUserById(session["_id"])
 
-    return render_template("settings/settings.html", user=user)
+            return render_template("settings/settings.html", user=user)
+        else:
+            return render_template("errors/403.html")
+    except:
+        return render_template("errors/403.html")
 
 
 @app.route("/mamom/users/<user_id>/", methods=["PUT"])
