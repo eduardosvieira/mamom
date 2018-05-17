@@ -97,17 +97,20 @@ def index_signup():
 @app.route("/mamom/signup/", methods=["POST"])
 def signup():
     try:
-        name = request.form.get("name")
-        email = request.form.get("email")
-        password = request.form.get("password")
+        if "_id" in session:
+            return redirect("/mamom/")
+        else:
+            name = request.form.get("name")
+            email = request.form.get("email")
+            password = request.form.get("password")
 
-        user = User(name=name, email=email, password=password)
+            user = User(name=name, email=email, password=password)
 
-        if user.UserAlreadyExists():
-            return render_template("signup/signup.html", error="Este e-mail já está sendo usado por outro usuário!")
+            if user.UserAlreadyExists():
+                return render_template("signup/signup.html", error="Este e-mail já está sendo usado por outro usuário!")
 
-        user.signUp()
+            user.signUp()
 
-        return redirect("/mamom/login/")
+            return redirect("/mamom/login/")
     except Exception as e:
         return "Error", 400
