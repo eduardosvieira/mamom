@@ -50,9 +50,9 @@ def get_account(account_id):
 
             return render_template("accounts/accounts.html", account=account, transations=transations, totalIncomes=totalIncomes, totalExpenses=totalExpenses, total=total)
         else:
-            return "Erro"
+            return render_template("errors/403.html")
     except Exception as e:
-        return "Permissão negada!", 403
+        return render_template("errors/403.html")
 
 @app.route("/mamom/accounts/", methods=["POST"])
 def create_account():
