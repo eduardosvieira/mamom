@@ -7,7 +7,7 @@
 
   {% include 'css.html' %}
 
-  <script src="{{ url_for('static', filename='js/users.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/settings.js') }}"></script>
 
   <title>Mamom</title>
 </head>
@@ -65,7 +65,14 @@
         <a id="btnEditPassword">Alterar</a>
       </div>
     </div>
-  </div>
 
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">Deseja apagar conta?</span>
+        <a id="btnDeleteUser" class="btn waves-effect waves-light #7e57c2 deep-purple lighten-1">Apagar Conta</a>
+      </div>
+    </div>
+
+  </div>
 </body>
 </html>

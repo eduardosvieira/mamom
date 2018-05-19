@@ -42,7 +42,7 @@ def delete_user():
         user = User(id=session["_id"])
 
         if user.deleteUser():
-            return redirect("/mamom/logout/")
+            return "OK", 200
         else:
             return "Error", 400
     except Exception as e:

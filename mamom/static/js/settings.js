@@ -34,4 +34,14 @@ $(document).ready(function(event){
       }
     });
   });
+
+  $("#btnDeleteUser").on("click", function(event){
+    $.ajax({
+      url: URL + "/mamom/users/",
+      type: "DELETE",
+      success: function(data) {
+        window.location.replace(URL + "/mamom/logout/");
+      }
+    });
+  });
 });
