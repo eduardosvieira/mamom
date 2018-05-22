@@ -58,7 +58,8 @@ $(document).ready(function(event) {
     $("#investments").empty();
 
     for(index in investments) {
-      var lucro = Math.trunc(investments[index].calcule(value, 6));
+    //  var lucro = Math.trunc(investments[index].calcule(value, 6));
+    var lucro = parseFloat(investments[index].calcule(value, 6).toFixed(2));
 
       var $investment = $("<div />")
                           .addClass("card")
@@ -75,21 +76,21 @@ $(document).ready(function(event) {
                                   .text("Valor Inicial"))
                                 .append($("<span />")
                                   .addClass("card-title")
-                                  .text(Math.trunc(value))))
+                                  .text("$ " + value)))
                               .append($("<div />")
                                 .addClass("col s12 m4 l4")
                                 .append($("<label />")
                                   .text("Valor após 6 meses"))
                                 .append($("<span />")
                                   .addClass("card-title")
-                                  .text(lucro)))
+                                  .text("$ " + lucro)))
                                 .append($("<div />")
                                   .addClass("col s12 m4 l4")
                                   .append($("<label />")
                                     .text("Impostos"))
                                   .append($("<span />")
                                     .addClass("card-title")
-                                    .text(investments[index].calculeImpostos(lucro - value))))));
+                                    .text("$ " + investments[index].calculeImpostos(lucro - value).toFixed(2))))));
 
       $("#investments").append($investment);
     }
