@@ -4,6 +4,48 @@ var PORT = window.location.port;
 
 var URL = PROTOCOL + "//" + HOSTNAME + ":" + PORT;
 
+function getMonth(month) {
+  switch (month) {
+    case "01":
+      return "Janeiro";
+      break;
+    case "02":
+      return "Fevereiro";
+      break;
+    case "03":
+      return "Março";
+      break;
+    case "04":
+      return "Abril";
+      break;
+    case "05":
+      return "Maio";
+      break;
+    case "06":
+      return "Junho";
+      break;
+    case "07":
+      return "Julho";
+      break;
+    case "08":
+      return "Agosto";
+      break;
+    case "09":
+      return "Setembro";
+      break;
+    case "10":
+      return "Outubro";
+      break;
+    case "11":
+      return "Novembro";
+      break;
+    case "12": "Dezembro"
+    default:
+      return "Mês errado";
+
+  }
+}
+
 function fillModalCreateTransation() {
   $.ajax({
     url: URL + "/mamom/categories/",
@@ -29,6 +71,12 @@ $(document).ready(function(){
 
   $('select').material_select();
 
+  /*Formata o prazo para realização da meta*/
+  $(".datas").each(function(event) {
+      var data = ($(this).text()).split("-");
+
+      $(this).text(data[2] + " de " + getMonth(data[1]) + " de " + data[0]);
+  });
 
   $("#btnDeleteUser").click(function(event) {
     $.ajax({
