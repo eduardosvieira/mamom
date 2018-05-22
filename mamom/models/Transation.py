@@ -36,7 +36,7 @@ class Transation():
 
     def getAllTransationsByUserId(self, userId):
         try:
-            transations = db.transations.find({"account.user._id": ObjectId(userId)})
+            transations = db.transations.find({"account.user._id": ObjectId(userId)}).sort([("createdAt", -1)])
 
             return transations
         except Exception as e:
@@ -44,7 +44,7 @@ class Transation():
 
     def getAllTransationsByAccountId(self, accountId):
         try:
-            transations = db.transations.find({"account._id": ObjectId(accountId)})
+            transations = db.transations.find({"account._id": ObjectId(accountId)}).sort([("createdAt", -1)])
 
             return transations
         except Exception as e:
