@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $(".button-collapse").sideNav();
+  $('.sidenav').sidenav();
 
   $("#newPassword2").on("change", function(event) {
     var $p1 = $("#newPassword");

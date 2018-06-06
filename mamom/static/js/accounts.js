@@ -57,19 +57,32 @@ function fillModalCreateTransation() {
         $("#category").append($("<option />").text(data[index]["name"]).attr("value", data[index]["_id"]))
       }
 
-      $('select').material_select();
+      $('select').formSelect();
+
     }
   });
 }
 
 $(document).ready(function(){
-  $(".button-collapse").sideNav();
+  $('.sidenav').sidenav();
 
   $('.tabs').tabs();
 
   $('.modal').modal();
 
-  $('select').material_select();
+  $('select').formSelect();
+
+  $('.datepicker').datepicker({firstDay: true,
+        format: 'dd/mm/yyyy',
+        closeOnSelect: true,
+        i18n: {
+            months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            weekdays: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
+            weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+            weekdaysAbbrev: ["D","S", "T", "Q", "Q", "S", "S"],
+            cancel: "Cancelar"
+        }});
 
   /*Formata o prazo para realização da meta*/
   $(".datas").each(function(event) {
@@ -135,7 +148,7 @@ $(document).ready(function(){
           $("#modal-edit-transation-category").append($("<option />").text(data[index]["name"]).attr("value", data[index]["_id"]))
         }
 
-        $('select').material_select();
+        $('select').formSelect();
       }
     });
 
