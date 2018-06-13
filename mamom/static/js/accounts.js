@@ -86,9 +86,9 @@ $(document).ready(function(){
 
   /*Formata o prazo para realização da meta*/
   $(".datas").each(function(event) {
-      var data = ($(this).text()).split("-");
+      var data = ($(this).text()).split("/");
 
-      $(this).text(data[2] + " de " + getMonth(data[1]) + " de " + data[0]);
+      $(this).text(data[0] + " de " + getMonth(data[1]) + " de " + data[2]);
   });
 
   $("#btnDeleteUser").click(function(event) {
