@@ -56,6 +56,8 @@ $(document).ready(function(){
 
   $('.modal').modal();
 
+  $('.tooltipped').tooltip();
+
   $('.datepicker').datepicker({
         firstDay: true,
         format: 'dd/mm/yyyy',
