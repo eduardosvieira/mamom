@@ -6,6 +6,8 @@
 <!-- 1.0.0 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css') }}">
+
 <!-- Compiled and Minified jQuery -->
 <!-- 3.3.1 -->
 <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
@@ -13,5 +15,7 @@
 <!-- Compiled and minified JavaScript -->
 <!-- 1.0.0 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+
+<script src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
